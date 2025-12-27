@@ -1,4 +1,3 @@
-import TempComp from "@/components/temp-comp";
 import {Button} from "@/components/ui/button"
 
 export default function Home() {
@@ -6,7 +5,6 @@ export default function Home() {
    <div className="flex flex-col h-screen items-center justify-center">
     <h1>Hello World</h1>
     <Button>Click me</Button>
-    <TempComp/>
    </div>
   );
 }
