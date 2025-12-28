@@ -1,10 +1,11 @@
-import {Button} from "@/components/ui/button"
+import Navbar from '@/components/core/Navbar'
+import { Container } from 'lucide-react'
+import React from 'react'
 
-export default function Home() {
+export default function page() {
   return (
-   <div className="flex flex-col h-screen items-center justify-center">
-    <h1>Hello World</h1>
-    <Button>Click me</Button>
-   </div>
-  );
+    <Container>
+      <Navbar/>
+    </Container>
+  )
 }
