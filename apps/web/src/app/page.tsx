@@ -1,6 +1,5 @@
 import Navbar from '@/components/core/Navbar'
-import { Container } from 'lucide-react'
-import React from 'react'
+import Container from '@/components/core/Container'
 
 export default function page() {
   return (

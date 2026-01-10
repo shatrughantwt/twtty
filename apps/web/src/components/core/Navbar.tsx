@@ -2,6 +2,7 @@ import React from "react";
 import Container from "./Container";
 import Link from "next/link";
 import Image from "next/image"
+import { ThemeToggle } from "./theme-toggle";
 
 const navItems = [
   {
@@ -37,10 +38,14 @@ export default function Navbar() {
           {navItems.map((item) => {
             return (
               <Link key={item.href} href="{item.href}">
-                <span>{item.label}</span>
+                <span className="text-sm font-medium text-gray-500 hover:text-gray-700">{item.label}</span>
               </Link>
             );
           })}
+        </div>
+
+        <div>
+          <ThemeToggle/>
         </div>
       </div>
     </Container>
