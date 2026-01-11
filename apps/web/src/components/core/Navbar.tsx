@@ -30,8 +30,8 @@ export default function Navbar() {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
           <Image
-            className="size-10"
-            src="/next.svg"
+            className="size-10 rounded-lg"
+            src="/e-lafda.png"
             alt="twtty"
             width={100}
             height={100}
@@ -39,13 +39,13 @@ export default function Navbar() {
           {navItems.map((item) => {
             return (
               <Link key={item.href} href="{item.href}">
-                <span className="text-sm font-medium text-gray-500 hover:text-gray-700 hidden md:block">{item.label}</span>
+                <span className="text-sm font-medium text-gray-500 hover:text-gray-700 hidden md:block hover:underline cursor-pointer">{item.label}</span>
               </Link>
             );
           })}
         </div>
 
-        <div>
+        <div className="flex items-center gap-3">
           <NewELafda/>
           <ThemeToggle/>
         </div>

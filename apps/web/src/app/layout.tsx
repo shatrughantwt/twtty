@@ -5,33 +5,36 @@ import { ThemeProvider } from "@/components/core/theme-provider";
 
 const poppins = Poppins({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-poppins",
-  weight: ["400","500","600","700"],
-})
+});
 
 export const metadata: Metadata = {
-  title: "Twtty",
-  description: "Twtty is a platform for berogaar's.",
+  title: {
+    default: "Twtty",
+    template: "%s | Twtty",
+  },
+  description: "Twtty is a platform for job seekers.",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${poppins.variable} antialiased`}
+        className={`${poppins.className} ${poppins.variable} antialiased`}
       >
-         <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-          </ThemeProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
