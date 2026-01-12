@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
 import { GoogleLogoIcon, XLogoIcon } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 
-export default function SignInDialog({
+function SignInDialog({
   triggerLabel,
 }: {
   triggerLabel: string;
@@ -76,3 +76,5 @@ export default function SignInDialog({
     </Dialog>
   );
 }
+
+export {SignInDialog};

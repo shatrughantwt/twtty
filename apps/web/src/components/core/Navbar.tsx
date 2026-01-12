@@ -1,9 +1,9 @@
 import React from "react";
-import Container from "./Container";
+import {Container} from "./Container";
 import Link from "next/link";
 import Image from "next/image"
 import { ThemeToggle } from "./theme-toggle";
-import NewELafda from "./new-e-lafda";
+import {NewELafda} from "./new-e-lafda";
 
 const navItems = [
   {
@@ -24,7 +24,7 @@ const navItems = [
   },
 ];
 
-export default function Navbar() {
+function Navbar() {
   return (
     <Container className="px-4 py-4 font-poppins">
       <div className="flex items-center justify-between">
@@ -53,3 +53,5 @@ export default function Navbar() {
     </Container>
   );
 }
+
+export {Navbar};

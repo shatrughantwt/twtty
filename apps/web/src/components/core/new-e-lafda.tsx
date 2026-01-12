@@ -1,7 +1,7 @@
 import { Button } from "@base-ui/react"
-import SignInDialog from "../auth/sign-in-dialog";
+import {SignInDialog} from "../auth/sign-in-dialog";
 
-export default function NewELafda() {
+function NewELafda() {
   const signedIn = false;
 
   if(signedIn){
@@ -14,3 +14,5 @@ export default function NewELafda() {
 
     return <SignInDialog triggerLabel="Create New E-lafda"/>;
 }
+
+export {NewELafda};
