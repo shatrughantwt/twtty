@@ -1,18 +1,18 @@
-import { Button } from "@base-ui/react"
-import {SignInDialog} from "../auth/sign-in-dialog";
+import { Button } from "@/components/ui/button";
+import { SignInDialog } from "../auth/sign-in-dialog";
 
 function NewELafda() {
   const signedIn = false;
 
-  if(signedIn){
-    return(
+  if (signedIn) {
+    return (
       <Button>
         Create New E-lafda
       </Button>
-    )
+    );
   }
 
-    return <SignInDialog triggerLabel="Create New E-lafda"/>;
+  return <SignInDialog triggerLabel="Create New E-lafda" />;
 }
 
-export {NewELafda};
+export { NewELafda };

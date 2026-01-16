@@ -6,7 +6,7 @@ export interface LafdaCardData {
   trendingRank?: number;
   tags: string[];
   votes: number;
-  uservote?: "up" | "down" | null;
+  userVote?: "up" | "down" | null;
 }
 
 export const mockLafdaData: LafdaCardData[] = [
@@ -18,7 +18,7 @@ export const mockLafdaData: LafdaCardData[] = [
     trendingRank: 1,
     tags: ["politics", "youtube", "cricket", "sports"],
     votes: 320,
-    uservote: null,
+    userVote: null,
   },
   {
     id: "2",
@@ -28,7 +28,7 @@ export const mockLafdaData: LafdaCardData[] = [
     trendingRank: 2,
     tags: ["cricket", "sports"],
     votes: 510,
-    uservote: "up",
+    userVote: "up",
   },
   {
     id: "3",
@@ -38,7 +38,7 @@ export const mockLafdaData: LafdaCardData[] = [
     trendingRank: 3,
     tags: ["tech", "frontend", "backend"],
     votes: 210,
-    uservote: "down",
+    userVote: "down",
   },
   {
     id: "4",
@@ -48,7 +48,7 @@ export const mockLafdaData: LafdaCardData[] = [
     trendingRank: 4,
     tags: ["football", "sports", "volleyball"],
     votes: 1120,
-    uservote: null,
+    userVote: null,
   },
   {
     id: "5",
@@ -66,6 +66,6 @@ export const mockLafdaData: LafdaCardData[] = [
     views: 3420,
     tags: ["technology", "mobile"],
     votes: 640,
-    uservote: null,
+    userVote: null,
   },
 ];

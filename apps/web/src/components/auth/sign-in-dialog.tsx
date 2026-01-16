@@ -15,11 +15,11 @@ import { cn } from "@/lib/utils";
 import { GoogleLogoIcon, XLogoIcon } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 
-function SignInDialog({
-  triggerLabel,
-}: {
+interface SignInDialogProps {
   triggerLabel: string;
-}) {
+}
+
+function SignInDialog({ triggerLabel }: SignInDialogProps) {
   return (
     <Dialog>
       <DialogTrigger className={cn(buttonVariants({ variant: "default" }))}>

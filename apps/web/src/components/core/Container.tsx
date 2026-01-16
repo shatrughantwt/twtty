@@ -10,8 +10,8 @@ function Container({
 }) {
   return (
     <div className={cn("max-w-5xl mx-auto container", className)}>
-    {children}
-  </div>
+      {children}
+    </div>
   );
 }
 
