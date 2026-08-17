@@ -159,20 +159,4 @@ bun run format
 - Component-driven design and sharing UI primitives between packages.
 - Building interactive client components (dialogs, toggles) with the Next app router.
 
-**Future Improvements**
-- Add a backend API (Express / Next API routes) and a persistent datastore for real data.
-- Add a CI workflow and tests (unit / integration) to validate components.
-- Add a README in `packages/ui` to document exported utilities and components.
-- Add a LICENSE file and deploy configuration (Vercel / Cloud) if publishing.
 
-**Contributing**
-- Contributions are welcome — open an issue or PR describing the change. Add a license before accepting external contributions.
-
-**License**
-- No license file found in the repository. Add a `LICENSE` to clarify reuse (e.g., MIT).
-
---
-If you'd like, I can also:
-- add a `LICENSE` template,
-- create a `README` for `packages/ui`, or
-- add sample API stubs and a small Express/Next API to demonstrate full-stack flow.
