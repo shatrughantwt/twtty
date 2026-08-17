@@ -1,135 +1,178 @@
-# Turborepo starter
+**Project Title**: Twtty (monorepo)
 
-This Turborepo starter is maintained by the Turborepo core team.
+**Short Description**:
+Twtty is a Next.js-based monorepo (Turborepo) that demonstrates a frontend-first component-driven application. It contains a Next 13+ app under `apps/web` and a shared `packages/ui` component library. The application uses the Next app router, Tailwind CSS for styling and mock data for UI demos.
 
-## Using this example
+**Overview**
+This repository is a developer-focused monorepo demonstrating:
+- A Next.js (app router) frontend application in `apps/web`.
+- A small shared UI package in `packages/ui` with utility helpers.
+- Workspace orchestration using Turborepo (root `package.json` + `turbo.json`).
 
-Run the following command:
+Key intent: showcase component design, theming, and page composition — not a backend API or production data store.
 
-```sh
-npx create-turbo@latest
-```
+**Key Features**
+- Next.js (app router) single-page entry at `/` that renders a `Navbar` and a `Trending E-lafda` section.
+- Shared UI primitives and helpers in `packages/ui` (utility `cn`, exported module entry).
+- Tailwind + CSS utilities for styling (`apps/web/src/app/globals.css`).
+- Mock data-driven UI (see `apps/web/src/mock-data/mock-lafda-data.ts`).
+- Dialog / sign-in UI flows (client-side components) demonstrating composition of primitives.
 
-## What's inside?
+**Architecture**
+This is a frontend monorepo with a simple architecture:
+- Monorepo root: orchestrates workspaces via Turborepo. `packageManager` is configured to `bun@1.3.5` in `package.json`.
+- `apps/web`: Primary Next.js application (app-router). It imports shared components from `packages/ui` and local `src/components`.
+- `packages/ui`: Shared component library and small utilities consumed by `apps/web`.
 
-This Turborepo includes the following packages/apps:
+There is no backend service, API server, message broker, or database in this repository. All dynamic content in the app is provided by in-repo mock data.
 
-### Apps and Packages
+**Services and Responsibilities**
+- `apps/web`:
+  - Responsibility: UI application / routes / pages. Contains the Next.js app router files (`src/app/layout.tsx`, `src/app/page.tsx`) and UI components used by pages.
+  - Key files: `src/app/page.tsx`, `src/app/layout.tsx`, `src/components/*`, `src/mock-data/*`.
+- `packages/ui`:
+  - Responsibility: shared UI helpers and component building blocks (small library used by `apps/web`).
+  - Key files: `index.ts`, `src/utils.ts` (exports `cn` helper).
+- `packages/eslint-config` and `packages/typescript-config`:
+  - Responsibility: shared developer configuration (eslint / tsconfig presets).
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+**How the Services Communicate**
+All communication is local within the repository via ES module imports. `apps/web` imports components and utilities from `packages/ui` (and internal `src/components`). There is no networked inter-service communication.
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+**Tech Stack**
+- Next.js 16 (app router)
+- React 19
+- Turborepo
+- Bun (package manager configured in root package.json)
+- TypeScript
+- Tailwind CSS (v4) and `tailwind-merge`
+- Utility libs: `clsx`, `class-variance-authority`, `lucide-react`, `@phosphor-icons/react`
 
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
-```
-
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
+**Project Structure**
+Key files and folders (trimmed):
 
 ```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
+/
+├─ apps/
+│  └─ web/
+│     ├─ package.json
+│     └─ src/
+│        ├─ app/
+        │  ├─ layout.tsx
+        │  ├─ page.tsx
+        │  └─ globals.css
+        ├─ components/  (Navbar, cards, dialog, many UI primitives)
+        └─ mock-data/
+           └─ mock-lafda-data.ts
+├─ packages/
+│  ├─ ui/  (shared component helpers)
+│  ├─ eslint-config/
+│  └─ typescript-config/
+├─ package.json
+└─ turbo.json
 ```
 
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+**Request / Event Flow**
+- There is no server-side API or message broker. The app renders UI by importing mock data (`mock-lafda-data.ts`) and rendering components. User interactions (dialog opens, theme toggle) are handled client-side by React components.
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
+**Prerequisites**
+- Node 18+ (the root `engines.node` specifies >=18). The repo's `packageManager` is set to `bun@1.3.5`, so using Bun is recommended.
+- Bun, npm, or pnpm installed. (This repo lists `bun` as the package manager; `npm`/`pnpm` should also work if you prefer but the manifest favors Bun.)
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
+**Installation & Setup**
+From the repository root:
 
-### Remote Caching
+```bash
+# Install deps (recommended: Bun)
+bun install
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
+# Or with npm/pnpm if you prefer
+# npm install
+# pnpm install
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+**Environment Variables**
+- This repository does not include or require any application-specific environment variables. The project contains `.gitignore` entries for `.env*`, but no `.env.example` or runtime secrets are present.
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+**How to Run the Project**
+- Start the full monorepo (uses Turborepo to run workspace scripts):
 
+```bash
+# recommended (Bun)
+bun run dev
+
+# or with npm (runs turbo):
+npm run dev
 ```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
+- Run only the web app directly:
+
+```bash
+cd apps/web
+bun run dev
+# or
+npm run dev
 ```
 
-## Useful Links
+- Build for production:
 
-Learn more about the power of Turborepo:
+```bash
+bun run build
+# or
+npm run build
+```
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+- Lint / format:
+
+```bash
+bun run lint
+bun run format
+```
+
+**Available Scripts**
+- Root (`/package.json`):
+  - `dev`: `turbo run dev` — runs dev for all workspaces
+  - `build`: `turbo run build`
+  - `lint`: `turbo run lint`
+  - `format`: `prettier --write "**/*.{ts,tsx,md}"`
+  - `check-types`: `turbo run check-types`
+- Web app (`apps/web/package.json`):
+  - `dev`: `next dev`
+  - `build`: `next build`
+  - `start`: `next start`
+  - `lint`: `eslint`
+
+**API Endpoints**
+- This repository does not include a backend API or API routes (`pages/api` or app-router `route.ts`) implemented by the application. All data shown is served from in-repo mock data (`apps/web/src/mock-data/mock-lafda-data.ts`).
+
+**Example Usage**
+- Visit the app in the browser after starting dev server (default Next port `http://localhost:3000`). The home page (`/`) renders:
+  - `Navbar` with links (some pages are placeholders)
+  - `Trending E-lafda` cards rendered from `mock-lafda-data`
+  - Sign-in dialog (client-side UI) demo
+
+**Screenshots**
+- (Add screenshots here: `/screenshots` or `docs/images/` — placeholder.)
+
+**What I Learned / Demonstrates**
+- How to structure a small monorepo with Turborepo and a Next.js app.
+- Component-driven design and sharing UI primitives between packages.
+- Building interactive client components (dialogs, toggles) with the Next app router.
+
+**Future Improvements**
+- Add a backend API (Express / Next API routes) and a persistent datastore for real data.
+- Add a CI workflow and tests (unit / integration) to validate components.
+- Add a README in `packages/ui` to document exported utilities and components.
+- Add a LICENSE file and deploy configuration (Vercel / Cloud) if publishing.
+
+**Contributing**
+- Contributions are welcome — open an issue or PR describing the change. Add a license before accepting external contributions.
+
+**License**
+- No license file found in the repository. Add a `LICENSE` to clarify reuse (e.g., MIT).
+
+--
+If you'd like, I can also:
+- add a `LICENSE` template,
+- create a `README` for `packages/ui`, or
+- add sample API stubs and a small Express/Next API to demonstrate full-stack flow.
